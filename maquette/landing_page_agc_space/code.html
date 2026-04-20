@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AGC Space | L'Écosystème E-commerce Intelligent</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f7f9fb",
+                        "inverse-surface": "#2d3133",
+                        "primary-fixed": "#d6e3ff",
+                        "surface-variant": "#e0e3e5",
+                        "secondary-fixed-dim": "#00daf3",
+                        "on-tertiary-fixed": "#001c3b",
+                        "surface-container": "#eceef0",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#001c3b",
+                        "on-primary-fixed": "#0e1c31",
+                        "outline": "#75777d",
+                        "on-background": "#191c1e",
+                        "surface-dim": "#d8dadc",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary-fixed": "#9cf0ff",
+                        "on-surface-variant": "#44474d",
+                        "surface-tint": "#525f77",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#001f24",
+                        "on-surface": "#191c1e",
+                        "primary": "#000000",
+                        "secondary-container": "#00e3fd",
+                        "secondary": "#006875",
+                        "on-tertiary-container": "#6b85ae",
+                        "on-secondary-fixed-variant": "#004f58",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c5c6cd",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f7f9fb",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#bac7e3",
+                        "tertiary": "#000000",
+                        "primary-fixed-dim": "#bac7e3",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#2d486d",
+                        "primary-container": "#0e1c31",
+                        "surface-container-high": "#e6e8ea",
+                        "surface": "#f7f9fb",
+                        "on-secondary-container": "#00616d",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#adc8f5",
+                        "tertiary-fixed": "#d5e3ff",
+                        "on-primary-container": "#77849e",
+                        "on-primary-fixed-variant": "#3a475e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-premium {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-primary-container text-white font-body selection:bg-secondary-container selection:text-primary-container">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-[#0B192E]/80 backdrop-blur-xl shadow-xl shadow-black/5 flex justify-between items-center px-8 h-20 max-w-full">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-[#0B192E] dark:text-white font-headline tracking-tight">AGC Space</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="font-inter text-sm antialiased text-slate-600 dark:text-slate-400 hover:text-[#006875] transition-all duration-300 ease-in-out hover:opacity-80" href="#">Plateforme</a>
+<a class="font-inter text-sm antialiased text-slate-600 dark:text-slate-400 hover:text-[#006875] transition-all duration-300 ease-in-out hover:opacity-80" href="#">Partenaires</a>
+<a class="font-inter text-sm antialiased text-slate-600 dark:text-slate-400 hover:text-[#006875] transition-all duration-300 ease-in-out hover:opacity-80" href="#">Vendeurs</a>
+<a class="font-inter text-sm antialiased text-slate-600 dark:text-slate-400 hover:text-[#006875] transition-all duration-300 ease-in-out hover:opacity-80" href="#">Tarifs</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-6 py-2 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-[#006875] transition-all scale-95 active:scale-90">Connexion</button>
+<button class="bg-gradient-to-r from-primary-container to-secondary text-white px-6 py-2.5 rounded-lg text-sm font-bold shadow-lg shadow-secondary/20 transition-all hover:brightness-110 scale-95 active:scale-90">Rejoindre</button>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative overflow-hidden pt-20 pb-32 px-8">
+<!-- Background Visuals -->
+<div class="absolute inset-0 z-0">
+<div class="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-secondary/20 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-primary/40 rounded-full blur-[100px]"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto flex flex-col items-center text-center">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-premium text-secondary-fixed-dim text-xs font-bold uppercase tracking-widest mb-8 border border-white/10">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">stars</span>
+                    L'Horizon Infini du Commerce
+                </div>
+<h1 class="font-headline font-extrabold text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[1.1] text-white mb-8 max-w-5xl">
+                    AGC Space : L'écosystème complet pour l'E-commerce <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-secondary-container">intelligent</span>
+</h1>
+<p class="font-body text-xl text-slate-400 max-w-3xl mb-12 leading-relaxed">
+                    Lancez, développez et automatisez votre tunnel de vente avec un constructeur intelligent et un suivi d'affiliation transparent. L'autorité digitale redéfinie.
+                </p>
+<div class="flex flex-col sm:flex-row gap-6 items-center">
+<button class="bg-gradient-to-r from-[#00E3FD] to-[#006875] text-primary-container px-10 py-5 rounded-xl font-bold text-lg shadow-2xl shadow-cyan-500/20 hover:scale-105 transition-transform">
+                        Accès Anticipé
+                    </button>
+<button class="px-10 py-5 rounded-xl font-bold text-lg text-white glass-premium hover:bg-white/10 transition-colors">
+                        Voir la Démo
+                    </button>
+</div>
+<!-- Dashboard Preview -->
+<div class="mt-24 relative w-full max-w-6xl mx-auto">
+<div class="rounded-2xl p-2 glass-premium shadow-2xl shadow-black/50">
+<img alt="Dashboard Preview" class="rounded-xl w-full h-auto opacity-90 grayscale-[0.2] hover:grayscale-0 transition-all duration-700" data-alt="high-tech sleek dark mode dashboard UI with glowing blue data visualizations, financial charts, and clean typography on a futuristic interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAr5n4lDFcKdhe9xyqzkbvGMyxVQIbO_Oa_GKQ5BU2Bhy5Nhz5A2ZzMLtHoAZsgdKG8VlarhpUi1biaH-Hu1sn_XVQhogdr6LXuAypD-9vYVQjYnenO3AoHtgUZ_1w1r7dBP-9fbUxynQUFNwZP59vLYApceKciFgiZFDH7h384IoHuCrFVnrHzs0wyR0iUnQBx57kEdfvI2Yk0sztYU9gyg5ioGG6lkQeilMs4BNZQStQVBbV--rrCw4duZKJv1ldj8cgrOruRxM"/>
+</div>
+<!-- Floating Tech Badges -->
+<div class="absolute -top-12 -left-12 p-6 glass-premium rounded-2xl hidden lg:block">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-secondary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary-container">rocket_launch</span>
+</div>
+<div class="text-left">
+<div class="text-xs text-slate-400 uppercase tracking-tighter">Vitesse de Flux</div>
+<div class="text-xl font-bold text-white tracking-tight">+142%</div>
+</div>
+</div>
+</div>
+<div class="absolute -bottom-10 -right-10 p-6 glass-premium rounded-2xl hidden lg:block">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-secondary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary-container">shield</span>
+</div>
+<div class="text-left">
+<div class="text-xs text-slate-400 uppercase tracking-tighter">Sécurité AGC</div>
+<div class="text-xl font-bold text-white tracking-tight">Certifié</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Features -->
+<section class="py-32 px-8 bg-surface-container-low/5 relative">
+<div class="max-w-7xl mx-auto">
+<div class="mb-20 text-center">
+<h2 class="font-headline font-extrabold text-4xl text-white mb-4">Une Architecture Dimensionnelle</h2>
+<p class="text-slate-400 font-body">Trois piliers pour dominer votre marché vertical.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[600px]">
+<!-- Large Feature Card -->
+<div class="md:col-span-8 glass-premium p-10 rounded-3xl flex flex-col justify-between group overflow-hidden relative">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-4xl text-secondary-container mb-6" style="font-variation-settings: 'FILL' 1;">architecture</span>
+<h3 class="text-3xl font-headline font-bold text-white mb-4">Constructeur de Tunnels Intelligent</h3>
+<p class="text-slate-400 max-w-md">Créez des parcours d'achat asymétriques et ultra-performants sans aucune limite technique. L'IA optimise chaque clic pour une conversion maximale.</p>
+</div>
+<div class="absolute right-0 bottom-0 w-2/3 h-2/3 opacity-30 group-hover:opacity-50 transition-opacity">
+<img alt="Technical Blueprint" class="w-full h-full object-cover rounded-tl-full border-l border-t border-white/10" data-alt="abstract technical schematic with glowing blue lines and geometric patterns representing advanced digital architecture and connectivity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCM5rxNAOeDMGtfaQjhmo7UJ5IXIfON1bgBTLvdp4skQX_lUBwE8PRbExOlZKOmhGJggB2EYoYwV-AT7fNbCKUOeL8e0OtcMLhNouQvczow1oS3k7d-XhPVQYMtdmI9c5ufrSAaqnD6nZU6hLgqVKKBgiAlOaOev6M7smBPV8DB580Xmwc5PsilGqx3qNNvUNOmERfSI_2RLEtS-8oEpDiysst7N1B9jfs1QrknaKI__w-OKjgGSee4PtC4Dl59YK8ZjXMDHmgPAk"/>
+</div>
+</div>
+<!-- Side Card 1 -->
+<div class="md:col-span-4 bg-gradient-to-br from-secondary/20 to-transparent p-8 rounded-3xl flex flex-col justify-end border border-white/5">
+<span class="material-symbols-outlined text-4xl text-secondary-container mb-6">monitoring</span>
+<h3 class="text-2xl font-headline font-bold text-white mb-2">Suivi d'Affiliation</h3>
+<p class="text-slate-400 text-sm">Transparence totale. Gérez vos partenaires avec une précision chirurgicale et des paiements automatisés.</p>
+</div>
+<!-- Side Card 2 -->
+<div class="md:col-span-4 glass-premium p-8 rounded-3xl flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-3xl text-secondary-container">hub</span>
+</div>
+<h3 class="text-xl font-headline font-bold text-white mb-2">Connectivité API</h3>
+<p class="text-slate-400 text-sm">Intégrez vos outils préférés dans une plateforme unifiée et sans friction.</p>
+</div>
+<!-- Long Bottom Card -->
+<div class="md:col-span-8 bg-white/5 p-8 rounded-3xl flex items-center gap-10 border border-white/5 group">
+<div class="flex-1">
+<h3 class="text-2xl font-headline font-bold text-white mb-2">Automation Spatiale</h3>
+<p class="text-slate-400 text-sm">Laissez nos algorithmes de machine learning gérer l'A/B testing en temps réel pendant que vous vous concentrez sur la stratégie.</p>
+</div>
+<div class="flex gap-2">
+<div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary-container">auto_awesome</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="py-24 border-y border-white/5">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+<div>
+<div class="text-5xl font-black text-white font-headline mb-2 tracking-tighter">99.9%</div>
+<div class="text-slate-400 uppercase text-xs tracking-widest">Uptime Garanti</div>
+</div>
+<div>
+<div class="text-5xl font-black text-white font-headline mb-2 tracking-tighter">2.4M</div>
+<div class="text-slate-400 uppercase text-xs tracking-widest">Transactions/Mois</div>
+</div>
+<div>
+<div class="text-5xl font-black text-white font-headline mb-2 tracking-tighter">150+</div>
+<div class="text-slate-400 uppercase text-xs tracking-widest">Pays Couverts</div>
+</div>
+<div>
+<div class="text-5xl font-black text-white font-headline mb-2 tracking-tighter">24/7</div>
+<div class="text-slate-400 uppercase text-xs tracking-widest">Support Expert</div>
+</div>
+</div>
+</section>
+<!-- Call to Action -->
+<section class="py-32 px-8">
+<div class="max-w-5xl mx-auto glass-premium rounded-[3rem] p-16 text-center relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-secondary/10 to-transparent"></div>
+<div class="relative z-10">
+<h2 class="text-4xl md:text-5xl font-headline font-extrabold text-white mb-6">Prêt à franchir l'horizon ?</h2>
+<p class="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">Rejoignez les leaders de l'e-commerce qui façonnent déjà le futur de la vente directe sur AGC Space.</p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<input class="bg-primary/50 border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:ring-2 focus:ring-secondary/50 w-full sm:w-80" placeholder="Votre adresse e-mail" type="email"/>
+<button class="bg-white text-primary font-bold px-8 py-4 rounded-xl hover:bg-secondary-container hover:text-primary transition-colors">
+                            Commencer l'Aventure
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-[#0B192E] dark:bg-[#050B14] w-full py-12 border-t border-white/5 flex flex-col items-center gap-8 px-10">
+<div class="flex flex-col items-center gap-4">
+<span class="text-xl font-black text-white font-headline">AGC Space</span>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 hover:text-[#00E3FD] transition-colors" href="#">Conditions Générales</a>
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 hover:text-[#00E3FD] transition-colors" href="#">Confidentialité</a>
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 hover:text-[#00E3FD] transition-colors" href="#">Support</a>
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 hover:text-[#00E3FD] transition-colors" href="#">Documentation</a>
+</div>
+</div>
+<p class="font-inter text-xs uppercase tracking-widest text-slate-400 text-center">© 2024 AGC Space. L'Horizon Infini.</p>
+</footer>
+</body></html>

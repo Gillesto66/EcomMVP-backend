@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f7f9fb",
+                        "inverse-surface": "#2d3133",
+                        "primary-fixed": "#d6e3ff",
+                        "surface-variant": "#e0e3e5",
+                        "secondary-fixed-dim": "#00daf3",
+                        "on-tertiary-fixed": "#001c3b",
+                        "surface-container": "#eceef0",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#001c3b",
+                        "on-primary-fixed": "#0e1c31",
+                        "outline": "#75777d",
+                        "on-background": "#191c1e",
+                        "surface-dim": "#d8dadc",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary-fixed": "#9cf0ff",
+                        "on-surface-variant": "#44474d",
+                        "surface-tint": "#525f77",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#001f24",
+                        "on-surface": "#191c1e",
+                        "primary": "#000000",
+                        "secondary-container": "#00e3fd",
+                        "secondary": "#006875",
+                        "on-tertiary-container": "#6b85ae",
+                        "on-secondary-fixed-variant": "#004f58",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c5c6cd",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f7f9fb",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#bac7e3",
+                        "tertiary": "#000000",
+                        "primary-fixed-dim": "#bac7e3",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#2d486d",
+                        "primary-container": "#0e1c31",
+                        "surface-container-high": "#e6e8ea",
+                        "surface": "#f7f9fb",
+                        "on-secondary-container": "#00616d",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#adc8f5",
+                        "tertiary-fixed": "#d5e3ff",
+                        "on-primary-container": "#77849e",
+                        "on-primary-fixed-variant": "#3a475e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-background antialiased">
+<!-- TopNavBar Shell -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-[#0B192E]/80 backdrop-blur-xl flex justify-between items-center px-8 h-20 max-w-full shadow-xl shadow-black/5">
+<div class="flex items-center gap-4">
+<span class="text-2xl font-black text-[#0B192E] dark:text-white font-headline tracking-tight">AGC Space</span>
+</div>
+<div class="hidden md:flex items-center gap-8 font-inter text-sm font-medium">
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#006875] transition-all duration-300 ease-in-out hover:opacity-80" href="#">Plateforme</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#006875] transition-all duration-300 ease-in-out hover:opacity-80" href="#">Partenaires</a>
+<a class="text-[#006875] dark:text-[#00E3FD] border-b-2 border-[#006875] dark:border-[#00E3FD] pb-1 transition-all duration-300 ease-in-out hover:opacity-80" href="#">Vendeurs</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#006875] transition-all duration-300 ease-in-out hover:opacity-80" href="#">Tarifs</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-5 py-2 text-sm font-semibold text-slate-700 hover:bg-surface-container-low rounded-lg transition-all">Connexion</button>
+<button class="px-6 py-2.5 text-sm font-bold bg-primary text-white rounded-lg scale-95 active:scale-90 transition-all duration-300 shadow-lg shadow-black/10">Rejoindre</button>
+</div>
+</nav>
+<!-- Sidebar Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#FFFFFF] dark:bg-[#0E1C31] hidden lg:flex flex-col py-6 z-40">
+<div class="px-8 pt-20 mb-10">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="text-sm font-bold text-[#0B192E] dark:text-white leading-tight">Espace Partenaire</p>
+<p class="text-[10px] uppercase tracking-widest text-secondary font-semibold">Niveau : Galaxie</p>
+</div>
+</div>
+<button class="w-full bg-secondary text-white py-3 px-4 rounded-xl text-xs font-bold flex items-center justify-center gap-2 hover:translate-x-1 transition-transform">
+<span class="material-symbols-outlined text-sm">add_circle</span>
+                Nouvelle Campagne
+            </button>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="bg-gradient-to-r from-[#0E1C31] to-[#006875] text-white rounded-r-full py-3 px-6 my-1 flex items-center gap-4 transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Tableau de Bord</span>
+</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#192A44] py-3 px-6 my-1 flex items-center gap-4 rounded-r-full transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="text-sm font-medium">Statistiques</span>
+</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#192A44] py-3 px-6 my-1 flex items-center gap-4 rounded-r-full transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-sm font-medium">Produits</span>
+</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#192A44] py-3 px-6 my-1 flex items-center gap-4 rounded-r-full transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">hub</span>
+<span class="text-sm font-medium">Affiliation</span>
+</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#192A44] py-3 px-6 my-1 flex items-center gap-4 rounded-r-full transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-sm font-medium">Portefeuille</span>
+</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#192A44] py-3 px-6 my-1 flex items-center gap-4 rounded-r-full transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Paramètres</span>
+</a>
+</nav>
+<div class="mt-auto px-4 border-t border-slate-100 dark:border-slate-800 pt-6">
+<a class="text-slate-500 hover:text-secondary py-3 px-6 flex items-center gap-4 transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="text-sm font-medium">Aide</span>
+</a>
+<a class="text-slate-500 hover:text-error py-3 px-6 flex items-center gap-4 transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="text-sm font-medium">Déconnexion</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-64 pt-24 px-6 pb-20 max-w-7xl mx-auto">
+<!-- Header Section -->
+<header class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="font-headline text-4xl md:text-5xl font-extrabold tracking-tight text-primary leading-none mb-2">Bienvenue, Gilles !</h1>
+<p class="text-on-surface-variant text-lg">Voici l'analyse de vos performances stellaires aujourd'hui.</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface-container-highest px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-lg">calendar_month</span>
+                    Mars 2024
+                </button>
+<button class="bg-primary text-white px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 hover:opacity-90 transition-all shadow-xl shadow-primary/10">
+<span class="material-symbols-outlined text-lg">download</span>
+                    Rapport Complet
+                </button>
+</div>
+</header>
+<!-- Bento Grid Analytics -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<!-- Ventes Totales -->
+<div class="bg-surface-container-lowest p-8 rounded-3xl border-none shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-secondary">payments</span>
+</div>
+<p class="text-sm font-semibold uppercase tracking-widest text-on-surface-variant mb-4">Ventes Totales</p>
+<div class="flex items-baseline gap-2">
+<h2 class="text-4xl font-black font-headline text-primary tracking-tighter">42 850 €</h2>
+<span class="text-green-600 text-sm font-bold flex items-center">+12.4%</span>
+</div>
+<div class="mt-6 h-1 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-3/4 rounded-full"></div>
+</div>
+</div>
+<!-- Produits Actifs -->
+<div class="bg-primary-container p-8 rounded-3xl border-none shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-white">rocket_launch</span>
+</div>
+<p class="text-sm font-semibold uppercase tracking-widest text-on-primary-container mb-4">Produits Actifs</p>
+<div class="flex items-baseline gap-2">
+<h2 class="text-4xl font-black font-headline text-white tracking-tighter">18</h2>
+<span class="text-secondary-container text-sm font-bold">En orbite</span>
+</div>
+<div class="flex gap-1 mt-6">
+<div class="h-8 w-1 bg-secondary rounded-full opacity-40"></div>
+<div class="h-10 w-1 bg-secondary rounded-full opacity-60"></div>
+<div class="h-6 w-1 bg-secondary rounded-full opacity-30"></div>
+<div class="h-12 w-1 bg-secondary rounded-full"></div>
+<div class="h-9 w-1 bg-secondary rounded-full opacity-70"></div>
+</div>
+</div>
+<!-- Meilleurs Promoteurs -->
+<div class="bg-surface-container-lowest p-8 rounded-3xl border-none shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-secondary">groups</span>
+</div>
+<p class="text-sm font-semibold uppercase tracking-widest text-on-surface-variant mb-4">Meilleurs Promoteurs</p>
+<div class="flex items-baseline gap-2">
+<h2 class="text-4xl font-black font-headline text-primary tracking-tighter">342</h2>
+<span class="text-secondary text-sm font-bold">Affiliés actifs</span>
+</div>
+<div class="mt-6 flex -space-x-3">
+<img class="w-10 h-10 rounded-full border-4 border-surface-container-lowest object-cover" data-alt="professional portrait of a young male marketing specialist smiling with a clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqDKT1o8kJl-01A8zG473_hj7hjZXRpT9mcHHrNLoxkEEiq2ZDE5q5tDV59FL94mT0IUB8Qd3yUuzt4DxKLDt_E-Hjx_A6PZBCXyS1tL8rttnho4ljSCW1gpzyFcY_WULVb0VIGc-WduyIquFUq8bHUDqTKx0ClBGc76Nmk-NNseqL_aDj3rd99nV0UxZDTfqho9Z_VzyuJmqA-ZdhS2w6NI56HPoi_5-vvftL97fnWqE-at4VyQ0K0PMzx6qIVGNoz6Kp8ldO7j4"/>
+<img class="w-10 h-10 rounded-full border-4 border-surface-container-lowest object-cover" data-alt="close-up portrait of a woman executive in a creative workspace with natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS6xmWYn4Qe-tXth24_8359Of3sZA3I4PvJ9i9otDVpWbgGCHE_hHtQSTmJ2Ngo2Ki7Fl4ZqK5LeC9Pp1-LsPS6Uvs86UJQRTjFnDgtx8IM8XvCT4tOBRQm6Pq-F1F85IN6u_sdMOEzMz2GxEGougD6X3i_ZDkR7iRlPMD_Iw5jO_lRd_XnirFHMuilno0N0K3S_BQu8JI3ixhPPJcSbvmARubBuch_dwkqIRjcc2z_FxxJxWgpBofHmL5i1HVwvmoQjwzKbFFN_A"/>
+<img class="w-10 h-10 rounded-full border-4 border-surface-container-lowest object-cover" data-alt="middle aged business person with a tech startup background smiling confidently" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4iomV8fav77LMhx5aoOKoI4e7TRU2ML772ri_uydOaLOD9YMGwS4N-jq-A0HYHSc1uvZYOmMDyTzBo_qx8C_iRdlUfO_Ym7ZAiXwiXGYhGFdy59Hrj9GGHeOUHZKPgwMqwWT-M0oIaWQ8_wXsOJYrjsmHbt5libIwTJTsMcBJCkKwMjiYkgzeRKmZs_AUYGpx9F4KKBYC5X_inSATv1W_b1WsLwqy5F0g6-aOSNPwVx7S2cOOPOq2zLcCE6F3Z-9IsRQWgRIZAEY"/>
+<div class="w-10 h-10 rounded-full border-4 border-surface-container-lowest bg-surface-container flex items-center justify-center text-[10px] font-bold">+339</div>
+</div>
+</div>
+</div>
+<!-- Sales Pages Section -->
+<section>
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-headline text-2xl font-bold text-primary">Mes Pages de Vente</h3>
+<a class="text-secondary font-bold text-sm flex items-center gap-1 hover:underline" href="#">
+                    Tout voir <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+<!-- Product Card 1 -->
+<div class="bg-surface-container-lowest rounded-[2rem] overflow-hidden group border-none transition-all hover:shadow-2xl hover:shadow-black/5">
+<div class="h-56 w-full relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="futuristic server room with glowing blue cables and advanced technological infrastructure" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwU2o94s2VYYyNgoLqEbH9TTXXBE0vNuo7AfpFaQ1-nzGkwPQbkGQjeCI2Cf4IFHqWUb61EFgexki4cH0EgkJRvKWqZf1dLHqZY6h9I9QUESCAvcqvqbW8I7ZVx0zIXURTmSoLiZSV0iWCGMRj873mA24TzX3OARfIccC-oLMKOsOycpeq71FuQ1HuW62Oz2Adp-z_c6bKfI_lG9uveUoJ225JR_1Rks1T8O8UtxllsUQjcuhIijJGB4-6SQG-Qfer2cqZU8389S0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-6">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Technologie</span>
+</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline font-bold text-xl text-primary leading-tight">Pack Infrastructure Alpha</h4>
+<span class="text-secondary font-black text-xl">299 €</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-6 line-clamp-2">Optimisation maximale pour les structures en pleine croissance avec intégration AGC native.</p>
+<div class="flex items-center justify-between pt-6 border-t border-surface-container">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">visibility</span>
+<span class="text-xs font-semibold">2.4k vues</span>
+</div>
+<button class="flex items-center gap-2 text-secondary hover:text-on-secondary-container transition-colors bg-secondary/5 px-4 py-2 rounded-xl text-sm font-bold">
+<span class="material-symbols-outlined text-sm">edit</span>
+                                Modifier la Page
+                            </button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-surface-container-lowest rounded-[2rem] overflow-hidden group border-none transition-all hover:shadow-2xl hover:shadow-black/5">
+<div class="h-56 w-full relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="abstract digital artwork representing global connectivity with network lines over planet earth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb5YqGCu8F4jwTRPwqCVZ2E-kNpsUS5W0FtJLdpiToyo-tG7kmyiVyFkJZ8fgzl176YaXgYGjLz0z0z4u4uP0AjVuKXnLySwshtZbF5CWtK2vEYwo5UiK9XV2Lp7N9iIGe6qubfomdjekq-_btpELhwUhfx9cFTXK-y3-qJChxlsErCnYqzMZmIbPnW0xDXV4nun5b6BxFcFZ3ikPUoGTKJu_m9kcTlr8KPkclP5ZtbN0Fnui4jJfFJmC3SNMPUlWH4klXSpayoQI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-6">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">SaaS</span>
+</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline font-bold text-xl text-primary leading-tight">Module Analytique Nebula</h4>
+<span class="text-secondary font-black text-xl">149 €</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-6 line-clamp-2">Des données en temps réel pour piloter votre écosystème avec une précision chirurgicale.</p>
+<div class="flex items-center justify-between pt-6 border-t border-surface-container">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">visibility</span>
+<span class="text-xs font-semibold">1.8k vues</span>
+</div>
+<button class="flex items-center gap-2 text-secondary hover:text-on-secondary-container transition-colors bg-secondary/5 px-4 py-2 rounded-xl text-sm font-bold">
+<span class="material-symbols-outlined text-sm">edit</span>
+                                Modifier la Page
+                            </button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 (Featured/Active) -->
+<div class="bg-surface-container-lowest rounded-[2rem] overflow-hidden group border-none transition-all hover:shadow-2xl hover:shadow-black/5 ring-2 ring-secondary ring-offset-4 ring-offset-background">
+<div class="h-56 w-full relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="close-up of advanced computer hardware with neon blue lighting and futuristic aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOo4lwgulXEzaDMqsmAf7L-8ajZtfZ_OQ0YclBARtUUbmuyi8kn2KnnejJ-rU_nNq-iM76qs8hjklXrUWsSh1WvhHCok7BfSaGpo9RhB3nCi7FiqNiaoDhi3pPU-TKxoLuLUQ3oSwz3fC68PA-BuxOzG3h6KuGXj6Mf7RNah3qSjA0T3mXdVJeGQnSfUfuP-OTSCzVrs1gOWxMHCuSx6k7KKdAKE_VJ9TM43kFeCwNZymrI25D3ZC3QDNu19Q-royw-AtlrS5WNqs"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-6">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Premium</span>
+</div>
+<div class="absolute top-4 right-4 bg-secondary text-white text-[10px] font-bold px-3 py-1 rounded-full animate-pulse">EN DIRECT</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline font-bold text-xl text-primary leading-tight">Système de Sécurité Pulsar</h4>
+<span class="text-secondary font-black text-xl">599 €</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-6 line-clamp-2">Protection de grade militaire pour vos actifs numériques les plus précieux.</p>
+<div class="flex items-center justify-between pt-6 border-t border-surface-container">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg text-secondary" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+<span class="text-xs font-semibold text-secondary">Top conversion</span>
+</div>
+<button class="flex items-center gap-2 text-white transition-colors bg-secondary px-4 py-2 rounded-xl text-sm font-bold shadow-lg shadow-secondary/20">
+<span class="material-symbols-outlined text-sm">edit</span>
+                                Personnaliser la Page
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- New Section: Affiliation Overview (Glassmorphism) -->
+<section class="mt-16 glass-card p-10 rounded-[2.5rem] border border-white/20 shadow-2xl">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div>
+<h3 class="font-headline text-3xl font-extrabold text-primary mb-6">Écosystème Affilié</h3>
+<p class="text-on-surface-variant mb-8 leading-relaxed">
+                        Votre armée de promoteurs s'agrandit. Gérez les commissions, les paliers de récompenses et fournissez des kits marketing personnalisés pour booster vos ventes indirectes.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<div class="bg-white/50 px-6 py-4 rounded-2xl">
+<p class="text-[10px] font-bold uppercase text-on-surface-variant tracking-widest mb-1">Commission Moy.</p>
+<p class="text-2xl font-black text-primary">25%</p>
+</div>
+<div class="bg-white/50 px-6 py-4 rounded-2xl">
+<p class="text-[10px] font-bold uppercase text-on-surface-variant tracking-widest mb-1">Gain Affiliés</p>
+<p class="text-2xl font-black text-primary">12.2k €</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-primary h-40 rounded-3xl p-6 flex flex-col justify-between">
+<span class="material-symbols-outlined text-secondary text-3xl">auto_graph</span>
+<p class="text-white font-bold text-sm">Croissance Réseau +18%</p>
+</div>
+<div class="bg-secondary-container h-40 rounded-3xl p-6 flex flex-col justify-between">
+<span class="material-symbols-outlined text-on-secondary-container text-3xl">campaign</span>
+<p class="text-on-secondary-container font-bold text-sm">Nouveaux Assets Dispo</p>
+</div>
+<div class="bg-surface-container h-40 rounded-3xl p-6 flex flex-col justify-between col-span-2">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-on-surface text-sm font-bold">Top Promoteur du Mois</p>
+<p class="text-on-surface-variant text-xs">Marc L. • 42 conversions</p>
+</div>
+<span class="bg-white p-2 rounded-lg text-secondary">
+<span class="material-symbols-outlined">emoji_events</span>
+</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="h-2 flex-1 bg-white rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[85%]"></div>
+</div>
+<span class="text-xs font-bold text-on-surface">85% du quota</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-[#0B192E] dark:bg-[#050B14] w-full py-12 border-t border-white/5 flex flex-col items-center gap-8 px-10">
+<div class="flex flex-col items-center gap-4">
+<span class="text-xl font-black text-white font-headline tracking-tighter">AGC Space</span>
+<div class="flex gap-8">
+<a class="text-slate-500 hover:text-[#00E3FD] transition-colors font-inter text-xs uppercase tracking-widest" href="#">Conditions Générales</a>
+<a class="text-slate-500 hover:text-[#00E3FD] transition-colors font-inter text-xs uppercase tracking-widest" href="#">Confidentialité</a>
+<a class="text-slate-500 hover:text-[#00E3FD] transition-colors font-inter text-xs uppercase tracking-widest" href="#">Support</a>
+<a class="text-slate-500 hover:text-[#00E3FD] transition-colors font-inter text-xs uppercase tracking-widest" href="#">Documentation</a>
+</div>
+</div>
+<p class="font-inter text-xs uppercase tracking-widest text-slate-400">© 2024 AGC Space. L'Horizon Infini.</p>
+</footer>
+</body></html>

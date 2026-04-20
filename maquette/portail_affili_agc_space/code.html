@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Centre d'Affiliation | AGC Space</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#f7f9fb",
+                    "inverse-surface": "#2d3133",
+                    "primary-fixed": "#d6e3ff",
+                    "surface-variant": "#e0e3e5",
+                    "secondary-fixed-dim": "#00daf3",
+                    "on-tertiary-fixed": "#001c3b",
+                    "surface-container": "#eceef0",
+                    "error": "#ba1a1a",
+                    "tertiary-container": "#001c3b",
+                    "on-primary-fixed": "#0e1c31",
+                    "outline": "#75777d",
+                    "on-background": "#191c1e",
+                    "surface-dim": "#d8dadc",
+                    "surface-container-low": "#f2f4f6",
+                    "secondary-fixed": "#9cf0ff",
+                    "on-surface-variant": "#44474d",
+                    "surface-tint": "#525f77",
+                    "error-container": "#ffdad6",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#001f24",
+                    "on-surface": "#191c1e",
+                    "primary": "#000000",
+                    "secondary-container": "#00e3fd",
+                    "secondary": "#006875",
+                    "on-tertiary-container": "#6b85ae",
+                    "on-secondary-fixed-variant": "#004f58",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#c5c6cd",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#f7f9fb",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#bac7e3",
+                    "tertiary": "#000000",
+                    "primary-fixed-dim": "#bac7e3",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#2d486d",
+                    "primary-container": "#0e1c31",
+                    "surface-container-high": "#e6e8ea",
+                    "surface": "#f7f9fb",
+                    "on-secondary-container": "#00616d",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed-dim": "#adc8f5",
+                    "tertiary-fixed": "#d5e3ff",
+                    "on-primary-container": "#77849e",
+                    "on-primary-fixed-variant": "#3a475e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex">
+<!-- SideNavBar Component -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#FFFFFF] dark:bg-[#0E1C31] flex flex-col py-6 z-40">
+<div class="px-8 mb-10">
+<h1 class="text-lg font-bold text-[#0B192E] dark:text-white">Espace Partenaire</h1>
+<p class="text-xs text-secondary font-medium tracking-wide">Niveau : Galaxie</p>
+</div>
+<nav class="flex-1 px-4">
+<div class="space-y-1">
+<!-- Active State: Tableau de Bord -->
+<a class="bg-gradient-to-r from-[#0E1C31] to-[#006875] text-white rounded-r-full py-3 px-6 my-1 flex items-center gap-3 transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-inter text-sm antialiased">Tableau de Bord</span>
+</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#192A44] py-3 px-6 my-1 flex items-center gap-3 rounded-r-full transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+<span class="font-inter text-sm antialiased">Statistiques</span>
+</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#192A44] py-3 px-6 my-1 flex items-center gap-3 rounded-r-full transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-inter text-sm antialiased">Produits</span>
+</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#192A44] py-3 px-6 my-1 flex items-center gap-3 rounded-r-full transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="hub">hub</span>
+<span class="font-inter text-sm antialiased">Affiliation</span>
+</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#192A44] py-3 px-6 my-1 flex items-center gap-3 rounded-r-full transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-inter text-sm antialiased">Portefeuille</span>
+</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#192A44] py-3 px-6 my-1 flex items-center gap-3 rounded-r-full transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-inter text-sm antialiased">Paramètres</span>
+</a>
+</div>
+<div class="mt-10 px-4">
+<button class="w-full py-3 bg-secondary text-on-secondary rounded-xl font-bold text-sm shadow-xl shadow-secondary/20 hover:opacity-90 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                    Nouvelle Campagne
+                </button>
+</div>
+</nav>
+<div class="px-4 mt-auto border-t border-slate-100 dark:border-slate-800 pt-6">
+<a class="text-slate-500 hover:text-secondary py-2 px-6 flex items-center gap-3 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-inter text-sm antialiased">Aide</span>
+</a>
+<a class="text-slate-500 hover:text-error py-2 px-6 flex items-center gap-3 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-inter text-sm antialiased">Déconnexion</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-64 min-h-screen p-8 lg:p-12">
+<!-- Header -->
+<header class="flex justify-between items-end mb-12">
+<div>
+<h2 class="text-4xl font-extrabold tracking-tight text-primary-container">Centre d'Affiliation</h2>
+<p class="text-on-primary-container font-medium mt-1">Gérez vos performances et maximisez vos revenus orbitaux.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="text-right hidden md:block">
+<p class="text-sm font-bold">AGC Space Partner</p>
+<p class="text-xs text-secondary">ID: #8829-QX</p>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="Profil Utilisateur AGC" data-alt="portrait of a professional male entrepreneur in a sharp navy suit looking confident against a clean studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNQ64mGZdCVUUGbQjwqFg48tN9I0-uIHTX6b6au3emWWQZbth0Ihh1bUhL-oEzs1k-4hU9Ccjc-2eAQyK7ztjjx9nKWRTVEtYOkaD6Y8gyeEtBYj2eBqK1mSplcR2FGELoNvo_qUREi8Sbo2objZeE6W5RHLGuHvUXjXfNQJusnIkHCqKLJwtoOkU6fkEos6HVqBuZHlswglM3iN1o3SfzA6zxgepYsJfo-CVPwLEaJPpd-L5aYDNVliwHgG5Q5_HKDmB5aemNV70"/>
+</div>
+</div>
+</header>
+<!-- Bento Grid Stats -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+<div class="glass-card p-8 rounded-xl border border-white/20 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-secondary" data-icon="payments">payments</span>
+<span class="text-[10px] uppercase tracking-widest font-bold text-slate-400">+12% ce mois</span>
+</div>
+<p class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Commissions Totales</p>
+<h3 class="text-3xl font-black text-primary">1 450,00 $</h3>
+</div>
+<div class="h-1 w-full bg-surface-container mt-4 rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-3/4"></div>
+</div>
+</div>
+<div class="glass-card p-8 rounded-xl border border-white/20 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-secondary" data-icon="ads_click">ads_click</span>
+</div>
+<p class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Clics Totaux</p>
+<h3 class="text-3xl font-black text-primary">3 200</h3>
+</div>
+<p class="text-xs text-green-600 mt-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="trending_up">trending_up</span>
+                    Volume en hausse
+                </p>
+</div>
+<div class="glass-card p-8 rounded-xl border border-white/20 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-secondary" data-icon="percent">percent</span>
+</div>
+<p class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Taux de Conversion</p>
+<h3 class="text-3xl font-black text-primary">4,5%</h3>
+</div>
+<div class="flex items-center gap-1 mt-4">
+<div class="w-2 h-2 rounded-full bg-secondary-container"></div>
+<span class="text-xs text-slate-500">Supérieur à la moyenne</span>
+</div>
+</div>
+<div class="bg-primary-container p-8 rounded-xl shadow-xl shadow-black/10 flex flex-col justify-between text-white">
+<div>
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-secondary-container" data-icon="pending_actions">pending_actions</span>
+</div>
+<p class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">Paiement en attente</p>
+<h3 class="text-3xl font-black">210,00 $</h3>
+</div>
+<button class="text-xs font-bold text-secondary-container flex items-center gap-2 mt-4 hover:opacity-80 transition-opacity">
+                    DÉTAILS DU RETRAIT
+                    <span class="material-symbols-outlined text-xs" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Marketplace Table Section -->
+<section class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden">
+<div class="px-8 py-6 border-b border-surface-container flex justify-between items-center bg-white">
+<h3 class="text-xl font-bold text-primary-container">Produits d'Affiliation Disponibles</h3>
+<div class="flex gap-2">
+<button class="px-4 py-2 text-xs font-bold text-slate-500 bg-surface-container-low rounded-lg hover:bg-surface-container transition-colors">Filtres</button>
+<button class="px-4 py-2 text-xs font-bold text-slate-500 bg-surface-container-low rounded-lg hover:bg-surface-container transition-colors">Exporter</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low/50 border-b border-surface-container">
+<tr>
+<th class="px-8 py-4 text-[11px] font-black uppercase tracking-widest text-slate-500">Nom du Produit</th>
+<th class="px-8 py-4 text-[11px] font-black uppercase tracking-widest text-slate-500">Catégorie</th>
+<th class="px-8 py-4 text-[11px] font-black uppercase tracking-widest text-slate-500">% Commission</th>
+<th class="px-8 py-4 text-[11px] font-black uppercase tracking-widest text-slate-500 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center overflow-hidden">
+<img alt="Product" class="object-cover h-full w-full" data-alt="sleek modern virtual reality headset on a clean desk with soft neon lighting accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ln9EP6ZgLn3ZsoZjUWMjqfeS8uxxOOcdhckl-M9NXdVfJq509Hb9-SO4pGlKFNOFjmKgaEhds624bEshxJP9ou2HYh38ZT_CSuURvk2IuWqSv7HQW5bziWCDXlach22_OyQEZe1DemyHemk61eZELMXLYDEjorXM_ZpZ8uFyjTUZvPj5Zzp1f6q-rlM2nFZSZlsd61kFf9_t2F8D7pW3LNXIv4Lq1K_HsN-bVpRPbh3_JWSkxSgB5kg21hoMH-vCULPDigGf7eY"/>
+</div>
+<div>
+<p class="font-bold text-sm text-primary">Station Orbitale V2</p>
+<p class="text-xs text-slate-400">Logiciel SaaS Premium</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold uppercase tracking-wider">Numérique</span>
+</td>
+<td class="px-8 py-5">
+<p class="text-sm font-black text-secondary">35%</p>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="px-5 py-2 bg-surface-container-highest text-primary-container rounded-lg text-xs font-bold group-hover:bg-secondary group-hover:text-white transition-all">
+                                    Générer Lien
+                                </button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center overflow-hidden">
+<img alt="Product" class="object-cover h-full w-full" data-alt="elegant metallic storage canister for high-end coffee beans in a minimalist kitchen setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWeOmtaFRrx-ku3UHD6h0yj_tXXSUITQIsrTP4AwtbEfmiDUEuiAInpchMxc0dy_A4u4-b4CF2nHyqpG4T1Zc_H6SrGvdKvDhziPkhSROBJvFxpREOJJ75D3L4PD7kPV9Wj6IF2-JHVOmldWclMBm9FmBaorRj0rqQBA0nhusFfTqsEv_dcaJ24AdfBH-FiLG7Gt50sX6ltstZ1077W6nBxY767ChTOU65x95KTVBBVVPA1z3pKxkfXZuP8j9QOeyBmh-YSZEBPjg"/>
+</div>
+<div>
+<p class="font-bold text-sm text-primary">Capsule Énergie AGC</p>
+<p class="text-xs text-slate-400">Accessoire Physique</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 rounded-full bg-slate-200 text-slate-600 text-[10px] font-bold uppercase tracking-wider">Physique</span>
+</td>
+<td class="px-8 py-5">
+<p class="text-sm font-black text-secondary">15%</p>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="px-5 py-2 bg-surface-container-highest text-primary-container rounded-lg text-xs font-bold group-hover:bg-secondary group-hover:text-white transition-all">
+                                    Générer Lien
+                                </button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center overflow-hidden">
+<img alt="Product" class="object-cover h-full w-full" data-alt="a digital analytics dashboard displayed on a high-resolution laptop screen in a bright workspace" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB412Rr7Fg7-2O7SthYdwZMIItRQNWLOeGYCaN0PJiUi7kIEyxQkLmg_E1F0aMVlYpBr4lm145hbX4mfkajPN-vNvj0ex6ndqnw1ZTkpNi1R-Zz669pPUuTJBxMuK-bHMavyMmI-v0AqXkjKPCli32BGhAVsLVf2_AyqR99tqJB0eX5nKfwS651PJ-Ru1hzB_wDitc3bDaxtDQ7_lgbPhQdDbKFgBF-DHa8XZr4cCNQPATg-SaeE5LBop5_QbvnItBYtOwqfz-T4U4"/>
+</div>
+<div>
+<p class="font-bold text-sm text-primary">Data Stream Pro</p>
+<p class="text-xs text-slate-400">Abonnement Mensuel</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold uppercase tracking-wider">Numérique</span>
+</td>
+<td class="px-8 py-5">
+<p class="text-sm font-black text-secondary">25% (Récurrent)</p>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="px-5 py-2 bg-surface-container-highest text-primary-container rounded-lg text-xs font-bold group-hover:bg-secondary group-hover:text-white transition-all">
+                                    Générer Lien
+                                </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-8 py-4 bg-white flex justify-center">
+<button class="text-xs font-bold text-slate-400 hover:text-secondary flex items-center gap-2 transition-colors uppercase tracking-widest">
+                    Voir tous les produits
+                    <span class="material-symbols-outlined text-sm" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</section>
+<!-- Footer (Contextual Small) -->
+<footer class="mt-20 flex flex-col items-center gap-6 text-slate-400">
+<div class="flex gap-8">
+<a class="text-[10px] uppercase tracking-[0.2em] hover:text-secondary transition-colors" href="#">Conditions Générales</a>
+<a class="text-[10px] uppercase tracking-[0.2em] hover:text-secondary transition-colors" href="#">Confidentialité</a>
+<a class="text-[10px] uppercase tracking-[0.2em] hover:text-secondary transition-colors" href="#">Support</a>
+<a class="text-[10px] uppercase tracking-[0.2em] hover:text-secondary transition-colors" href="#">Documentation</a>
+</div>
+<p class="text-[10px] uppercase tracking-[0.2em]">© 2024 AGC Space. L'Horizon Infini.</p>
+</footer>
+</main>
+</body></html>

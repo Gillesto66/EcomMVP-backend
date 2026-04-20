@@ -1,0 +1,28 @@
+# Auteur : Gilles - Projet : AGC Space - Module : Déploiement systemd
+# Service systemd pour Gunicorn
+# Emplacement : /etc/systemd/system/agcspace.service
+# Activer : systemctl enable agcspace && systemctl start agcspace
+
+[Unit]
+Description=AGC Space — Gunicorn Django Backend
+After=network.target postgresql.service redis.service
+Requires=postgresql.service redis.service
+
+[Service]
+Type=notify
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/agcspace
+EnvironmentFile=/var/www/agcspace/.env
+ExecStart=/var/www/agcspace/venv/bin/gunicorn \
+    -c /var/www/agcspace/deploy/gunicorn.conf.py \
+    agc_core.wsgi:application
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

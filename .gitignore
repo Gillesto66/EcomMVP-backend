@@ -1,0 +1,8 @@
+# Auteur : Gilles - Projet : AGC Space - Module : Configuration
+.env
+__pycache__/
+*.pyc
+*.pyo
+db.sqlite3
+*.log
+.vscode/
