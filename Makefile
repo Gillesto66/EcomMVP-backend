@@ -74,7 +74,7 @@ migrate:
 # ── Développement normal (2 ports) ────────────────────────────────────────────
 dev-back:
 	@echo "$(CYAN)▶ Démarrage Django sur :$(DJANGO_PORT)...$(RESET)"
-	$(DJANGO) runserver $(DJANGO_PORT)
+	set PYTHONIOENCODING=utf-8 && $(DJANGO) runserver $(DJANGO_PORT)
 
 dev-front:
 	@echo "$(CYAN)▶ Démarrage Next.js sur :$(NEXT_PORT)...$(RESET)"
@@ -107,7 +107,7 @@ tunnel:
 	@echo "$(GREEN)✓ Lancez maintenant dans un autre terminal :$(RESET)"
 	@echo "$(GREEN)  ngrok http $(DJANGO_PORT)$(RESET)"
 	@echo ""
-	$(DJANGO) runserver $(DJANGO_PORT)
+	set PYTHONIOENCODING=utf-8 && $(DJANGO) runserver $(DJANGO_PORT)
 
 # ── Build Next.js → Django staticfiles ───────────────────────────────────────
 build:

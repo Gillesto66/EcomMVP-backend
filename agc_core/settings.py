@@ -155,11 +155,32 @@ CORS_ALLOWED_ORIGINS = os.getenv(
 ).split(',')
 CORS_ALLOW_CREDENTIALS = True
 
-# Accepter tous les sous-domaines Ngrok via regex
+# ── CORS ──────────────────────────────────────────────────────────────────────
+CORS_ALLOWED_ORIGINS = os.getenv(
+    'CORS_ALLOWED_ORIGINS', 'http://localhost:3000'
+).split(',')
+CORS_ALLOW_CREDENTIALS = True
+
+# Accepter tous les sous-domaines Ngrok et Vercel via regex
 CORS_ALLOWED_ORIGIN_REGEXES = [
     r'^https://.*\.ngrok-free\.app$',
     r'^https://.*\.ngrok-free\.dev$',
     r'^https://.*\.ngrok\.io$',
+    r'^https://.*\.vercel\.app$',
+]
+
+# Headers autorisés — inclut ngrok-skip-browser-warning envoyé par le frontend
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'ngrok-skip-browser-warning',
 ]
 
 # ── Sécurité production ───────────────────────────────────────────────────────
@@ -238,7 +259,7 @@ LOGGING = {
         'console': {
             'class': 'logging.StreamHandler',
             'formatter': 'verbose',
-            'stream': 'ext://sys.stdout',  # UTF-8 sur Windows
+            'stream': 'ext://sys.stdout',
         },
         'file': {
             'class': 'logging.handlers.RotatingFileHandler',

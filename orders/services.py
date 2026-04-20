@@ -60,7 +60,7 @@ def _decrement_stock(product, quantity: int) -> None:
         from django.db.models import F
         from products.models import Product
         Product.objects.filter(pk=product.pk).update(stock=F('stock') - quantity)
-        logger.info("Stock décrémenté — '%s' : %d → %d", product.name, product.stock, product.stock - quantity)
+        logger.info("Stock décrémenté — '%s' : %d -> %d", product.name, product.stock, product.stock - quantity)
 
 
 def _create_commission(order, affiliation_link) -> 'Commission':
