@@ -76,6 +76,12 @@ class ProductViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         if self.action in ['list', 'retrieve']:
+            # ?mine=true → produits du vendeur connecté (dashboard)
+            # sinon → marketplace publique (produits actifs de tous)
+            if self.request.query_params.get('mine') == 'true':
+                return Product.objects.filter(
+                    owner=self.request.user
+                ).select_related('owner')
             qs = Product.objects.filter(is_active=True).select_related('owner')
         else:
             qs = Product.objects.filter(owner=self.request.user)

@@ -11,9 +11,8 @@ gunicorn==25.3.0
 redis==6.2.0
 PyJWT==2.10.1
 
-# Media processing
-moviepy==1.0.3
-python-magic==0.4.27
+whitenoise==6.9.0
+dj-database-url==2.3.0
 
 # Tests
 pytest==9.0.3

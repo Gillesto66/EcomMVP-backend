@@ -1,5 +1,6 @@
 # Auteur : Gilles - Projet : AGC Space - Module : Configuration Django
 import os
+import sys
 from pathlib import Path
 from dotenv import load_dotenv
 from datetime import timedelta
@@ -8,9 +9,20 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-fallback-key')
-DEBUG = os.getenv('DEBUG', 'True') == 'True'
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+# ── Environnement ─────────────────────────────────────────────────────────────
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-fallback-key-change-in-prod')
+
+# Sur Render, DEBUG doit être False — la variable d'env n'est pas définie → False par défaut
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+
+# Render injecte automatiquement le hostname du service
+# Format : votre-service.onrender.com
+RENDER_HOSTNAME = os.getenv('RENDER_EXTERNAL_HOSTNAME', '')
+
+ALLOWED_HOSTS_ENV = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+ALLOWED_HOSTS = [h.strip() for h in ALLOWED_HOSTS_ENV if h.strip()]
+if RENDER_HOSTNAME and RENDER_HOSTNAME not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(RENDER_HOSTNAME)
 
 # ── Applications ──────────────────────────────────────────────────────────────
 INSTALLED_APPS = [
@@ -23,7 +35,7 @@ INSTALLED_APPS = [
     # Third-party
     'rest_framework',
     'rest_framework_simplejwt',
-    'rest_framework_simplejwt.token_blacklist',  # Blacklist JWT — révocation des refresh tokens
+    'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
     # AGC Space apps
     'users',
@@ -32,17 +44,20 @@ INSTALLED_APPS = [
     'orders',
 ]
 
+# ── Middleware ────────────────────────────────────────────────────────────────
+# WhiteNoise DOIT être juste après SecurityMiddleware
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django.middleware.gzip.GZipMiddleware',          # Compression gzip côté Django (fallback si Nginx absent)
+    'whitenoise.middleware.WhiteNoiseMiddleware',      # Fichiers statiques en prod
+    'django.middleware.gzip.GZipMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'agc_core.middleware.RequestLoggingMiddleware',    # Logs structurés des requêtes
+    'agc_core.middleware.RequestLoggingMiddleware',
 ]
 
 ROOT_URLCONF = 'agc_core.urls'
@@ -65,23 +80,42 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'agc_core.wsgi.application'
 
-# ── Base de données PostgreSQL ────────────────────────────────────────────────
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'agc_space'),
-        'USER': os.getenv('DB_USER', 'postgres'),
-        'PASSWORD': os.getenv('DB_PASSWORD', ''),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', '5432'),
-        'OPTIONS': {
-            # Active les index GIN sur les champs JSONField (JSONB natif PostgreSQL)
-            # Permet des requêtes rapides sur products.config et templates.config
-            'options': '-c default_text_search_config=pg_catalog.french',
-        },
-        'CONN_MAX_AGE': int(os.getenv('DB_CONN_MAX_AGE', '60')),  # Connexions persistantes
+# ── Base de données ───────────────────────────────────────────────────────────
+# Render fournit DATABASE_URL automatiquement pour les bases PostgreSQL attachées
+# En local, fallback sur les variables individuelles
+import dj_database_url
+
+DATABASE_URL = os.getenv('DATABASE_URL')
+
+if DATABASE_URL:
+    # Production Render — dj_database_url parse l'URL complète
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=int(os.getenv('DB_CONN_MAX_AGE', '60')),
+            conn_health_checks=True,
+            ssl_require=not DEBUG,  # SSL obligatoire en prod, optionnel en dev
+        )
     }
-}
+    # Conserver l'option de recherche full-text français
+    DATABASES['default'].setdefault('OPTIONS', {})
+    DATABASES['default']['OPTIONS']['options'] = '-c default_text_search_config=pg_catalog.french'
+else:
+    # Développement local — variables individuelles
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('DB_NAME', 'agc_space'),
+            'USER': os.getenv('DB_USER', 'postgres'),
+            'PASSWORD': os.getenv('DB_PASSWORD', ''),
+            'HOST': os.getenv('DB_HOST', 'localhost'),
+            'PORT': os.getenv('DB_PORT', '5432'),
+            'OPTIONS': {
+                'options': '-c default_text_search_config=pg_catalog.french',
+            },
+            'CONN_MAX_AGE': int(os.getenv('DB_CONN_MAX_AGE', '60')),
+        }
+    }
 
 # ── Cache Redis ───────────────────────────────────────────────────────────────
 REDIS_URL = os.getenv('REDIS_URL', 'redis://localhost:6379/0')
@@ -97,14 +131,13 @@ CACHES = {
             'IGNORE_EXCEPTIONS': True,  # Si Redis est down, l'app continue sans cache
         },
         'KEY_PREFIX': 'agcspace',
-        'TIMEOUT': int(os.getenv('CACHE_TTL', '300')),  # 5 min par défaut
+        'TIMEOUT': int(os.getenv('CACHE_TTL', '300')),
     }
 }
 
-# TTL spécifiques par type de données
-CACHE_TTL_PAGE_RENDER = int(os.getenv('CACHE_TTL_PAGE_RENDER', '300'))   # 5 min — pages de vente
-CACHE_TTL_THEME = int(os.getenv('CACHE_TTL_THEME', '3600'))              # 1h  — thèmes CSS
-CACHE_TTL_PRODUCT = int(os.getenv('CACHE_TTL_PRODUCT', '120'))           # 2min — produits
+CACHE_TTL_PAGE_RENDER = int(os.getenv('CACHE_TTL_PAGE_RENDER', '300'))
+CACHE_TTL_THEME       = int(os.getenv('CACHE_TTL_THEME', '3600'))
+CACHE_TTL_PRODUCT     = int(os.getenv('CACHE_TTL_PRODUCT', '120'))
 
 # ── Auth ──────────────────────────────────────────────────────────────────────
 AUTH_USER_MODEL = 'users.User'
@@ -125,11 +158,11 @@ REST_FRAMEWORK = {
         'rest_framework.throttling.UserRateThrottle',
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'anon': os.getenv('THROTTLE_ANON', '100/hour'),
-        'user': os.getenv('THROTTLE_USER', '1000/hour'),
-        'login': os.getenv('THROTTLE_LOGIN', '10/minute'),       # Anti brute-force login
-        'register': os.getenv('THROTTLE_REGISTER', '5/minute'),  # Anti spam inscription
-        'validate': os.getenv('THROTTLE_VALIDATE', '30/minute'), # Validation liens affiliés
+        'anon':     os.getenv('THROTTLE_ANON',     '100/hour'),
+        'user':     os.getenv('THROTTLE_USER',     '1000/hour'),
+        'login':    os.getenv('THROTTLE_LOGIN',    '10/minute'),
+        'register': os.getenv('THROTTLE_REGISTER', '5/minute'),
+        'validate': os.getenv('THROTTLE_VALIDATE', '30/minute'),
     },
     'DEFAULT_FILTER_BACKENDS': [
         'rest_framework.filters.SearchFilter',
@@ -141,35 +174,31 @@ REST_FRAMEWORK = {
 
 # ── JWT ───────────────────────────────────────────────────────────────────────
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=int(os.getenv('JWT_ACCESS_MINUTES', '60'))),
+    'ACCESS_TOKEN_LIFETIME':  timedelta(minutes=int(os.getenv('JWT_ACCESS_MINUTES', '60'))),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=int(os.getenv('JWT_REFRESH_DAYS', '7'))),
-    'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': True,  # Révoque l'ancien refresh token après rotation
+    'ROTATE_REFRESH_TOKENS':  True,
+    'BLACKLIST_AFTER_ROTATION': True,
     'AUTH_HEADER_TYPES': ('Bearer',),
-    'UPDATE_LAST_LOGIN': True,  # Met à jour last_login à chaque connexion
+    'UPDATE_LAST_LOGIN': True,
 }
 
 # ── CORS ──────────────────────────────────────────────────────────────────────
-CORS_ALLOWED_ORIGINS = os.getenv(
-    'CORS_ALLOWED_ORIGINS', 'http://localhost:3000'
-).split(',')
+CORS_ALLOWED_ORIGINS = [
+    o.strip() for o in
+    os.getenv('CORS_ALLOWED_ORIGINS', 'http://localhost:3000').split(',')
+    if o.strip()
+]
 CORS_ALLOW_CREDENTIALS = True
 
-# ── CORS ──────────────────────────────────────────────────────────────────────
-CORS_ALLOWED_ORIGINS = os.getenv(
-    'CORS_ALLOWED_ORIGINS', 'http://localhost:3000'
-).split(',')
-CORS_ALLOW_CREDENTIALS = True
-
-# Accepter tous les sous-domaines Ngrok et Vercel via regex
+# Sous-domaines Ngrok et Vercel acceptés via regex
 CORS_ALLOWED_ORIGIN_REGEXES = [
     r'^https://.*\.ngrok-free\.app$',
     r'^https://.*\.ngrok-free\.dev$',
     r'^https://.*\.ngrok\.io$',
     r'^https://.*\.vercel\.app$',
+    r'^https://.*\.onrender\.com$',  # Render preview deployments
 ]
 
-# Headers autorisés — inclut ngrok-skip-browser-warning envoyé par le frontend
 CORS_ALLOW_HEADERS = [
     'accept',
     'accept-encoding',
@@ -185,19 +214,21 @@ CORS_ALLOW_HEADERS = [
 
 # ── Sécurité production ───────────────────────────────────────────────────────
 if not DEBUG:
-    SECURE_HSTS_SECONDS = 31536000          # 1 an
+    # Render est derrière un proxy HTTPS — ne pas rediriger en interne
+    # (Render gère le SSL en amont, Django reçoit du HTTP en interne)
+    SECURE_SSL_REDIRECT = False
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+    SECURE_HSTS_SECONDS           = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = True
-    SECURE_SSL_REDIRECT = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_BROWSER_XSS_FILTER = True
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-    X_FRAME_OPTIONS = 'DENY'
+    SECURE_HSTS_PRELOAD           = True
+    SESSION_COOKIE_SECURE         = True
+    CSRF_COOKIE_SECURE            = True
+    SECURE_BROWSER_XSS_FILTER     = True
+    SECURE_CONTENT_TYPE_NOSNIFF   = True
+    X_FRAME_OPTIONS               = 'DENY'
 
 # ── HMAC ──────────────────────────────────────────────────────────────────────
-# Clé dédiée pour les signatures HMAC des liens d'affiliation
-# Si absente, fallback sur SECRET_KEY (acceptable, mais une clé dédiée est préférable)
 HMAC_SECRET_KEY = os.getenv('HMAC_SECRET_KEY', SECRET_KEY)
 
 # ── Monitoring Sentry ─────────────────────────────────────────────────────────
@@ -213,62 +244,69 @@ if SENTRY_DSN:
             RedisIntegration(),
         ],
         traces_sample_rate=float(os.getenv('SENTRY_TRACES_SAMPLE_RATE', '0.1')),
-        send_default_pii=False,  # RGPD — pas de données personnelles dans Sentry
+        send_default_pii=False,
         environment=os.getenv('SENTRY_ENVIRONMENT', 'production' if not DEBUG else 'development'),
         release=os.getenv('APP_VERSION', 'unknown'),
     )
 
-# ── Délai de validation automatique des commissions ──────────────────────────
+# ── Commissions ───────────────────────────────────────────────────────────────
 COMMISSION_VALIDATION_DELAY_DAYS = int(os.getenv('COMMISSION_VALIDATION_DELAY_DAYS', '14'))
 
 # ── Internationalisation ──────────────────────────────────────────────────────
 LANGUAGE_CODE = 'fr-fr'
-TIME_ZONE = 'Europe/Paris'
-USE_I18N = True
-USE_TZ = True
+TIME_ZONE     = 'Europe/Paris'
+USE_I18N      = True
+USE_TZ        = True
 
-# ── Fichiers statiques & media ────────────────────────────────────────────────
-STATIC_URL = '/static/'
+# ── Fichiers statiques (WhiteNoise) ──────────────────────────────────────────
+STATIC_URL  = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-MEDIA_URL = '/media/'
+# WhiteNoise : compression + cache immutable pour les assets hashés
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+MEDIA_URL  = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # ── Logging ───────────────────────────────────────────────────────────────────
+# Sur Render (et tout cloud) : logs uniquement sur stdout/stderr
+# Les fichiers de log ne sont pas persistants sur les instances éphémères
 LOG_LEVEL = os.getenv('LOG_LEVEL', 'DEBUG' if DEBUG else 'INFO')
-LOG_DIR = BASE_DIR / 'logs'
-LOG_DIR.mkdir(exist_ok=True)
 
-_log_handlers_app = ['console', 'file']
+# En production cloud, pas de handler fichier
+_IS_CLOUD = bool(os.getenv('RENDER') or os.getenv('DYNO') or not DEBUG)
+_log_handlers_app = ['console'] if _IS_CLOUD else ['console', 'file']
+
+_handlers: dict = {
+    'console': {
+        'class': 'logging.StreamHandler',
+        'formatter': 'verbose',
+        'stream': 'ext://sys.stdout',
+    },
+}
+
+if not _IS_CLOUD:
+    LOG_DIR = BASE_DIR / 'logs'
+    LOG_DIR.mkdir(exist_ok=True)
+    _handlers['file'] = {
+        'class': 'logging.handlers.RotatingFileHandler',
+        'filename': str(BASE_DIR / 'logs' / 'agcspace.log'),
+        'maxBytes': 10 * 1024 * 1024,
+        'backupCount': 5,
+        'formatter': 'verbose',
+    }
 
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
         'verbose': {
-            'format': '[{levelname}] {asctime} {module} — {message}',
-            'style': '{',
-        },
-        'simple': {
-            'format': '[{levelname}] {message}',
+            'format': '[{levelname}] {asctime} {module} - {message}',
             'style': '{',
         },
     },
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose',
-            'stream': 'ext://sys.stdout',
-        },
-        'file': {
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': LOG_DIR / 'agcspace.log',
-            'maxBytes': 10 * 1024 * 1024,  # 10 MB
-            'backupCount': 5,
-            'formatter': 'verbose',
-        },
-    },
+    'handlers': _handlers,
     'root': {
         'handlers': ['console'],
         'level': 'INFO',
@@ -279,6 +317,6 @@ LOGGING = {
         'affiliations': {'handlers': _log_handlers_app, 'level': LOG_LEVEL, 'propagate': False},
         'orders':       {'handlers': _log_handlers_app, 'level': LOG_LEVEL, 'propagate': False},
         'cache':        {'handlers': _log_handlers_app, 'level': LOG_LEVEL, 'propagate': False},
-        'security':     {'handlers': _log_handlers_app, 'level': 'WARNING', 'propagate': False},
+        'security':     {'handlers': _log_handlers_app, 'level': 'WARNING',  'propagate': False},
     },
 }
