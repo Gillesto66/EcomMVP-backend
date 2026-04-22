@@ -13,6 +13,7 @@ PyJWT==2.10.1
 
 whitenoise==6.9.0
 dj-database-url==2.3.0
+httpx==0.28.1
 
 # Tests
 pytest==9.0.3

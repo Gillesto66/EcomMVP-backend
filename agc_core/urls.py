@@ -5,7 +5,6 @@ from django.urls import path, include, re_path
 from django.http import JsonResponse
 from django.conf import settings
 from django.conf.urls.static import static
-from agc_core.proxy import nextjs_proxy
 
 
 def health_check(request):
@@ -21,7 +20,6 @@ def health_check(request):
     db_ok, cache_ok = True, True
     db_latency_ms, cache_latency_ms = None, None
 
-    # ── Vérification DB ───────────────────────────────────────────────────────
     try:
         t0 = time.monotonic()
         connection.ensure_connection()
@@ -31,7 +29,6 @@ def health_check(request):
         import logging
         logging.getLogger('security').error("Health check — DB KO : %s", str(e))
 
-    # ── Vérification Redis ────────────────────────────────────────────────────
     try:
         t0 = time.monotonic()
         cache.set('health_check', '1', 5)
@@ -60,12 +57,16 @@ urlpatterns = [
     path('api/v1/orders/', include('orders.urls')),
 ]
 
-# Servir les fichiers media en développement
+# Fichiers media en développement uniquement
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# ── Catch-all : tout le reste → Next.js ──────────────────────────────────────
-# DOIT être en dernier — après toutes les routes API et media
-urlpatterns += [
-    re_path(r'^.*$', nextjs_proxy, name='nextjs-proxy'),
-]
+# ── Proxy Next.js — dev local uniquement ─────────────────────────────────────
+# Sur Render (et tout environnement cloud), le frontend est servi par Vercel.
+# Le proxy n'est activé que si NEXTJS_INTERNAL_URL est défini ET qu'on est en DEBUG.
+_NEXTJS_URL = os.getenv('NEXTJS_INTERNAL_URL', '')
+if settings.DEBUG and _NEXTJS_URL:
+    from agc_core.proxy import nextjs_proxy
+    urlpatterns += [
+        re_path(r'^.*$', nextjs_proxy, name='nextjs-proxy'),
+    ]
